@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script
+      function sse() {
+        var source = new EventSource('/stream');
+        source.onmessage = function(e) {
+          var out = document.getElementById('out');
+          out.innerHTML =  '  <li>'+ e.data + '</li>' + out.innerHTML;
+        };
+      }
+      sse(); 
+  body
+    block content
